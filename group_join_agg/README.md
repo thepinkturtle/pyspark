@@ -27,18 +27,28 @@ result = my_left_df.join(my_right_df, ["my_matching_col"])
 #|     2|  89774|        Tom Hardy|2015-10-24 19:33:25|
 #|     2| 106782|            drugs|2015-10-24 19:30:54|
 #|     2| 106782|Leonardo DiCaprio|2015-10-24 19:30:51|
-#|     2| 106782|  Martin Scorsese|2015-10-24 19:30:56|
-#|     7|  48516|     way too long|2007-01-25 01:08:45|
-#|    18|    431|        Al Pacino|2016-05-01 21:39:25|
-#|    18|    431|         gangster|2016-05-01 21:39:09|
-#|    18|    431|            mafia|2016-05-01 21:39:15|
-#|    18|   1221|        Al Pacino|2016-04-26 19:35:06|
-#|    18|   1221|            Mafia|2016-04-26 19:35:03|
-#|    18|   5995|        holocaust|2016-02-17 18:57:52|
-#|    18|   5995|       true story|2016-02-17 18:57:59|
-#|    18|  44665|     twist ending|2016-03-02 19:51:23|
-#|    18|  52604|  Anthony Hopkins|2016-03-10 22:58:16|
-#|    18|  52604|  courtroom drama|2016-03-10 22:58:31|
 #+------+-------+-----------------+-------------------+
-my_tags_df.groupby("")
+
+tags.groupby("movieId").agg(
+    f.collect_set("tag").alias("tags"),`#alias's just temporarily rename the col
+    f.count("tag").alias("tag_count"),
+    f.collect_set("userId").alias("users"),
+    f.count("userId").alias("user_count"),
+    f.min("timestamp").alias("first_tagged_date"),
+    f.max("timestamp").alias("last_tagged_date")
+).sort(f.col("tag_count").desc()).show() # sort desc'ing is often done this way
+
+# You'll end up with something like the following
+#+-------+--------------------+---------+--------------------+----------+-------------------+-------------------+
+#|movieId|                tags|tag_count|               users|user_count|  first_tagged_date|   last_tagged_date|
+#+-------+--------------------+---------+--------------------+----------+-------------------+-------------------+
+#|    296|[foul language, r...|      181|[103, 474, 424, 599]|       181|2006-01-14 02:16:41|2017-06-26 05:58:14|
+#|   2959|[powerful ending,...|       54|[474, 424, 599, 435]|        54|2006-01-14 02:17:14|2017-06-26 06:02:47|
+#|    924|[music, atmospher...|       41|          [474, 599]|        41|2006-01-15 23:33:55|2017-06-26 06:00:27|
+#|    293|[friendship, orga...|       35|     [474, 166, 599]|        35|2006-01-24 21:20:19|2017-06-26 05:49:52|
+#|   7361|[arthouse, atmosp...|       34|[477, 474, 424, 1...|        34|2006-01-14 02:30:08|2018-05-02 17:40:11|
+#|   1732|[Philip Seymour H...|       32|          [474, 599]|        32|2006-01-26 20:17:41|2017-06-26 05:51:48|
+#|   4878|[surreal, atmosph...|       29|[477, 474, 424, 1...|        29|2006-01-14 02:29:41|2018-05-02 17:36:42|
+#+-------+--------------------+---------+--------------------+----------+-------------------+-------------------+
+
 ```
