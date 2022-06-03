@@ -1,5 +1,13 @@
 
 ### Tips tricks and notes for quick pyspark reference
+- Create spark session 
+```python
+from pyspark.sql import SparkSession
+
+# standard way to make a spark session
+spark = SparkSession.builder.appName("MyFirstCSVLoad").getOrCreate()
+```
+
 - load data
   - can use ```inferSchema=True``` however you wont guarantee type safety so use it only for dataset exploration
 ```python
@@ -8,7 +16,7 @@ df = spark.read.csv(path="example.csv",
                     header=True, 
                     sep=',',
                     quote='"',
-                    schema="userId INT, movieId INT, rating DOUBLE, timestamp INT") # called schema DDL/DML 
+                    schema="userId INT, movieId INT, rating DOUBLE, timestamp INT") #schema DDL/DML 
 # will lose rows if not match schema but ensures type safety
 ```
 - Show first n rows of data
