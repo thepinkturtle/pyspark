@@ -8,7 +8,7 @@ df = spark.read.csv(path="example.csv",
                     header=True, 
                     sep=',',
                     quote='"',
-                    schema="userId INT, movieId INT, rating DOUBLE, timestamp INT") # called a schema DDL/DML ensures type saftey
+                    schema="userId INT, movieId INT, rating DOUBLE, timestamp INT") # called schema DDL/DML 
 # will lose rows if not match schema but ensures type safety
 ```
 - Show first n rows of data
