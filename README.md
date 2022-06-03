@@ -24,3 +24,29 @@ df = spark.read.csv(path="example.csv",
 
 - Show the current schema 
 ```df.printSchema()```
+
+- Renaming columns
+```python
+df = (
+    df
+    .withColumnRenamed("timestamp", "timestamp_unix") #rename col to timestamp_unix
+)
+````
+
+- function.from_unixtime(): convert to human readable time
+```python
+df = (
+    df
+    .withColumn("timestamp", f.from_unixtime("your_unix_timestamp_col")) 
+    # run opperation and create a new col with results from 'from_unixtime' function
+)
+```
+
+- function.to_timestamp(): convert type to timestamp
+```python
+df = (
+    df
+    .withColumn("timestamp", f.to_timestamp("timestamp"))
+    # convert column type to timestamp type
+)
+```
