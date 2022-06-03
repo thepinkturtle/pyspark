@@ -11,3 +11,8 @@ df = spark.read.csv(path="example.csv",
                     schema="userId INT, movieId INT, rating DOUBLE, timestamp INT") # called a schema DDL/DML ensures type saftey
 # will lose rows if not match schema but ensures type safety
 ```
+- Show first n rows of data
+```df.show(5)```
+
+- Show the current schema 
+```df.printSchema()```
