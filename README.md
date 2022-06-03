@@ -52,6 +52,17 @@ df = (
 ```
 
 - function.explode(): will take something like an array and make a new row for each item in the array see the example below
+starting with this:
++-------+----------------------------------+-------------------------------------------+
+|movieId|title                             |genres                                     |
++-------+----------------------------------+-------------------------------------------+
+|1      |Toy Story (1995)                  |Adventure|Animation|Children|Comedy|Fantasy|
+|2      |Jumanji (1995)                    |Adventure|Children|Fantasy                 |
+|3      |Grumpier Old Men (1995)           |Comedy|Romance                             |
+|4      |Waiting to Exhale (1995)          |Comedy|Drama|Romance                       |
+|5      |Father of the Bride Part II (1995)|Comedy                                     |
++-------+----------------------------------+-------------------------------------------+
+
 ```python
 # Given a data.csv with multiple values in one column seperated by a '|' symbol 
 movie_genre = (
@@ -60,10 +71,24 @@ movie_genre = (
     # split the values in the column 'genres' into an array of values on the '|' symbol
     
     .withColumn("genre", f.explode("genres_array"))
-    # make a new row for every value in the genres_array column and the new value in the genre column
+    # make a new row for every value in the genres_array column and store the new value in the genre column
     
     .select("movieId", "title", "genre")
 )
 ```
+Resulting in this:
++-------+-----------------------+---------+
+|movieId|title                  |genre    |
++-------+-----------------------+---------+
+|1      |Toy Story (1995)       |Adventure|
+|1      |Toy Story (1995)       |Animation|
+|1      |Toy Story (1995)       |Children |
+|1      |Toy Story (1995)       |Comedy   |
+|1      |Toy Story (1995)       |Fantasy  |
+|2      |Jumanji (1995)         |Adventure|
+|2      |Jumanji (1995)         |Children |
+|2      |Jumanji (1995)         |Fantasy  |
+|3      |Grumpier Old Men (1995)|Comedy   |
+|3      |Grumpier Old Men (1995)|Romance  |
++-------+-----------------------+---------+
 
-```
