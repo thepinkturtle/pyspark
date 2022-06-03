@@ -53,18 +53,19 @@ df = (
 
 - function.explode(): will take something like an array and make a new row for each item in the array see the example below
 starting with this:
-+-------+----------------------------------+-------------------------------------------+
-|movieId|title                             |genres                                     |
-+-------+----------------------------------+-------------------------------------------+
-|1      |Toy Story (1995)                  |Adventure|Animation|Children|Comedy|Fantasy|
-|2      |Jumanji (1995)                    |Adventure|Children|Fantasy                 |
-|3      |Grumpier Old Men (1995)           |Comedy|Romance                             |
-|4      |Waiting to Exhale (1995)          |Comedy|Drama|Romance                       |
-|5      |Father of the Bride Part II (1995)|Comedy                                     |
-+-------+----------------------------------+-------------------------------------------+
 
 ```python
 # Given a data.csv with multiple values in one column seperated by a '|' symbol 
+# +-------+----------------------------------+-------------------------------------------+
+# |movieId|title                             |genres                                     |
+# +-------+----------------------------------+-------------------------------------------+
+# |1      |Toy Story (1995)                  |Adventure|Animation|Children|Comedy|Fantasy|
+# |2      |Jumanji (1995)                    |Adventure|Children|Fantasy                 |
+# |3      |Grumpier Old Men (1995)           |Comedy|Romance                             |
+# |4      |Waiting to Exhale (1995)          |Comedy|Drama|Romance                       |
+# |5      |Father of the Bride Part II (1995)|Comedy                                     |
+# +-------+----------------------------------+-------------------------------------------+
+
 movie_genre = (
     movies
     .withColumn("genres_array", f.split("genres", "\|"))
