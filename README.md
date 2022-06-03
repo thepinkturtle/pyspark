@@ -95,6 +95,7 @@ movie_genre = (
 ```
 
 - where(): a way to filter data
+  - use ```f.col``` to do it the pythonic way otherwise you have to do it the SQL way
 ```python
 # given a dataframe 'movies' with the col 'genres' and a value in the row of '(no genres listed' 
 # only get rows that have '(no genres listed)' as a value
