@@ -94,3 +94,11 @@ movie_genre = (
 # +-------+-----------------------+---------+
 ```
 
+- where(): a way to filter data
+```python
+# given a dataframe 'movies' with the col 'genres' and a value in the row of '(no genres listed' 
+# only get rows that have '(no genres listed)' as a value
+
+movies_without_genre = movies.where(f.col("genres") == "(no genres listed)")
+
+```
