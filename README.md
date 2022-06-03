@@ -23,7 +23,7 @@ df = spark.read.csv(path="example.csv",
 ```df.show(5)```
 
 - Show the current schema
-  - if rows are truncating and you want to see them then use the 'truncate=False' parameter 
+  - if rows are truncating and you want to see them then use the ```truncate=False``` parameter  
 ```df.printSchema()```
 
 - Renaming columns
