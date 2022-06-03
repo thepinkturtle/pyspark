@@ -76,20 +76,21 @@ movie_genre = (
     
     .select("movieId", "title", "genre")
 )
+
+# Resulting in this:
+# +-------+-----------------------+---------+
+# |movieId|title                  |genre    |
+# +-------+-----------------------+---------+
+# |1      |Toy Story (1995)       |Adventure|
+# |1      |Toy Story (1995)       |Animation|
+# |1      |Toy Story (1995)       |Children |
+# |1      |Toy Story (1995)       |Comedy   |
+# |1      |Toy Story (1995)       |Fantasy  |
+# |2      |Jumanji (1995)         |Adventure|
+# |2      |Jumanji (1995)         |Children |
+# |2      |Jumanji (1995)         |Fantasy  |
+# |3      |Grumpier Old Men (1995)|Comedy   |
+# |3      |Grumpier Old Men (1995)|Romance  |
+# +-------+-----------------------+---------+
 ```
-Resulting in this:
-+-------+-----------------------+---------+
-|movieId|title                  |genre    |
-+-------+-----------------------+---------+
-|1      |Toy Story (1995)       |Adventure|
-|1      |Toy Story (1995)       |Animation|
-|1      |Toy Story (1995)       |Children |
-|1      |Toy Story (1995)       |Comedy   |
-|1      |Toy Story (1995)       |Fantasy  |
-|2      |Jumanji (1995)         |Adventure|
-|2      |Jumanji (1995)         |Children |
-|2      |Jumanji (1995)         |Fantasy  |
-|3      |Grumpier Old Men (1995)|Comedy   |
-|3      |Grumpier Old Men (1995)|Romance  |
-+-------+-----------------------+---------+
 
