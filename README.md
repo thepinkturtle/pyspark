@@ -1,8 +1,10 @@
 
 ### Tips tricks and notes for quick pyspark reference
 - load data
-```python 
-df = spark.read.csv(path="ratings.csv", 
+  - can use ```inferSchema=True``` however you wont guarantee type safety so use it only for dataset exploration
+```python
+# replace "example.csv" with your dataset .csv file of choice likewise change the schema to the dataset schema too
+df = spark.read.csv(path="example.csv", 
                     header=True, 
                     sep=',',
                     quote='"',
