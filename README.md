@@ -50,3 +50,20 @@ df = (
     # convert column type to timestamp type
 )
 ```
+
+- function.explode(): will take something like an array and make a new row for each item in the array see the example below
+```python
+# Given a data.csv with multiple values in one column seperated by a '|' symbol 
+movie_genre = (
+    movies
+    .withColumn("genres_array", f.split("genres", "\|"))
+    # split the values in the column 'genres' into an array of values on the '|' symbol
+    
+    .withColumn("genre", f.explode("genres_array"))
+    # make a new row for every value in the genres_array column and the new value in the genre column
+    
+    .select("movieId", "title", "genre")
+)
+```
+
+```
